@@ -14,7 +14,7 @@ def assign_random_weights(graph):
     for u, v in graph.edges():
         graph[u][v]['weight'] = random.randint(1, 100)
 
-def nearest_neighbor_tour(graph):
+def nearest_neighbor(graph):
     start_city = random.choice(list(graph.nodes()))
     current_city = start_city
     tour = [current_city]
@@ -30,7 +30,7 @@ def nearest_neighbor_tour(graph):
     tour.append(start_city)
     return tour
 
-def christofides_solution(graph):
+def christofides(graph):
     mst = nx.minimum_spanning_tree(graph)
     odd_degree_vertices = [v for v in mst.nodes() if mst.degree(v) % 2 != 0]
     perfect_matching = nx.max_weight_matching(mst, maxcardinality=True)
@@ -71,13 +71,13 @@ for num_cities in num_cities_list:
     graph, coordinates = generate_random_graph(num_cities)
     assign_random_weights(graph)
     
-    nn_tour = nearest_neighbor_tour(graph)
+    nn_tour = nearest_neighbor(graph)
     nn_tour_length = calculate_tour_length(nn_tour, graph)
     
     print("Nearest Neighbor Tour:", nn_tour)
     print("Nearest Neighbor Tour Length:", nn_tour_length)
     
-    christofides_tour = christofides_solution(graph)
+    christofides_tour = christofides(graph)
     christofides_tour_length = calculate_tour_length(christofides_tour, graph)
     print("Christofides Tour:", christofides_tour)
     print("Christofides Tour Length:", christofides_tour_length)
