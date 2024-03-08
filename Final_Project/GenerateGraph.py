@@ -5,6 +5,8 @@ import random
 class GenerateGraph:
     def __init__(self, num_cities):
         self.num_cities = num_cities
+        self.graph = None
+        self.coordinates = None
 
     def generate_random_graph(self):
         np.random.seed(42)
